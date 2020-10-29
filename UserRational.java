@@ -8,7 +8,7 @@ public class UserRational {
         int op, numerator, denominator;
         char next = 'S';
         do {
-            Rational rational1 = new Rational(), rational2 = new Rational(), result = null;
+            Rational rational1 = new Rational(random), rational2 = new Rational(random), result = null;
             System.out.println("\nOperaciones con números racionales.\n\nSuma\nResta\nDivisión\nMultiplicación\n");
             rational1.reduce();
             rational2.reduce();

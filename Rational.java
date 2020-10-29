@@ -5,7 +5,9 @@ public class Rational {
     private int numerator, denominator;
 
     public Rational() {
-        Random random = new Random();
+    }
+
+    public Rational(Random random) {
         numerator = random.nextInt(9);
         denominator = random.nextInt(9 - 1 + 1) + 1;
     }
