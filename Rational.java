@@ -1,17 +1,35 @@
 import java.util.Random;
 
+/**
+ * The Rational class to the rational numbers.
+ * @version 1, 29/10/20
+ * @author Carlos Huerta García
+ */
 public class Rational {
 
-    private int numerator, denominator;
+    public int numerator, denominator;
 
+    /** 
+     * Constructs a new rational number with numerator and denominator 1.
+     */
     public Rational() {
+        numerator = denominator = 1;
     }
 
+    /** 
+     * Constructs a new rational number with random numerator and denominator.
+     * @param random Instance of java.util.Random class.
+     */
     public Rational(Random random) {
-        numerator = random.nextInt(9);
+        numerator = random.nextInt(9 - 1 + 1) + 1;
         denominator = random.nextInt(9 - 1 + 1) + 1;
     }
 
+    /** 
+     * Constructs a new rational number with given integers numerator and denominator.
+     * @param numerator Integer numerator.
+     * @param denominator Integer denominator diffrent from zero.
+     */
     public Rational(int numerator, int denominator) {
         this.numerator = numerator;
         if(denominator == 0)
@@ -19,6 +37,11 @@ public class Rational {
         this.denominator = denominator;
     }
 
+    /** 
+     * Sets this rational number with given integers numerator and denominator.
+     * @param numerator Integer numerator.
+     * @param denominator Integer denominator diffrent from zero.
+     */
     public void setRational(int numerator, int denominator) {
         this.numerator = numerator;
         if(denominator == 0)
@@ -47,6 +70,11 @@ public class Rational {
         int gcd = gcd(numerator, denominator);
         numerator /= gcd;
         denominator /= gcd;
+    }
+
+    public Rational reduced() {
+        reduce();
+        return this;
     }
 
     public void add(Rational r) {

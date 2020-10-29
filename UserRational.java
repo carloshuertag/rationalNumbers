@@ -1,52 +1,70 @@
 import java.util.Random;
 import java.util.Scanner;
 
+/**
+ * Main class UserRational sets an application of Rational class.
+ * @version 1, 29/10/20
+ * @author Carlos Huerta García
+ */
+
 public class UserRational {
+
+    /**
+     * Runs an application of Rational class.
+     * @param args None
+     */
     public static void main(String[] args){
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
-        int op, numerator, denominator;
+        int numerator, denominator;
         char next = 'S';
         do {
-            Rational rational1 = new Rational(random), rational2 = new Rational(random), result = null;
+            Rational rational1 = new Rational(random).reduced(), rational2 = new Rational(random).reduced(), result = new Rational();
             System.out.println("\nOperaciones con números racionales.\n\nSuma\nResta\nDivisión\nMultiplicación\n");
-            rational1.reduce();
-            rational2.reduce();
             System.out.println("\nDos números racionales aleatorios: "+ rational1 + ", " + rational2);
-            op = random.nextInt(4 - 1 + 1) + 1;
-            switch(op) {
+            switch(random.nextInt(4 - 1 + 1) + 1) {
                 case 1:
-                    result = rational1.addition(rational2);
+                    result = rational1.addition(rational2).reduced();
                     System.out.println("Suma: " + rational1 + " + " + rational2 + " = ");
+                    rational1.add(rational2);
                     break;
                 case 2:
-                    result = rational1.subtraction(rational2);
+                    result = rational1.subtraction(rational2).reduced();
                     System.out.println("Resta: " + rational1 + " - " + rational2 + " = ");
+                    rational1.sub(rational2);
                     break;
                 case 3:
-                    result = rational1.division(rational2);
+                    if(rational2.numerator == 0){
+                        System.out.println("División entre cero no válida");
+                        continue;
+                    }
+                    result = rational1.division(rational2).reduced();
                     System.out.println("División " + rational1 + " / " + rational2 + " = ");
+                    rational1.div(rational2);
                     break;
                 case 4:
-                    result = rational1.multiplication(rational2);
+                    result = rational1.multiplication(rational2).reduced();
                     System.out.println("Multiplicación " + rational1 + " * " + rational2 + " = ");
+                    rational1.mult(rational2);
                     break;
                 default:
                     break;
             }
-            result.reduce();
             do {
                 System.out.println("\nIngrese el resultado obtenido reducido al máximo:\nNumerador: ");
                 numerator = scanner.nextInt();
                 System.out.println("Denominador: ");
                 denominator = scanner.nextInt();
-                rational1 = new Rational(numerator, denominator);
-                if(rational1.equals(result)){
+                rational2 = new Rational(numerator, denominator);
+                if(rational2.equals(result)){
                     System.out.println("El resultado ingresado es correcto, ¡felicidades!\n\n¿Desea seguir practicando? (S/N)");
                     next = scanner.next().charAt(0);
                 } 
                 else {
-                    System.out.println("El resultado ingresado es incorrecto, \nrevisa con detenimiento los pasos intermedios para la operación e intenta de nuevo.");
+                    if(rational2.equals(rational1))
+                        System.out.println("El resultado ingresado es parcialmente correcto, \nreduce al máximo el resultado e intenta de nuevo.\nResultado correcto: " + result);
+                    else
+                        System.out.println("El resultado ingresado es incorrecto, \nrevisa con detenimiento los pasos intermedios de la operación e intenta de nuevo.\nResultado correcto: " + result);
                     next = 'N';
                 }
             } while(next == 'N');
