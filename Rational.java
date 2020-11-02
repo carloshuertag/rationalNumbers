@@ -38,7 +38,7 @@ public class Rational {
     }
 
     /** 
-     * Sets this rational number with given integers numerator and denominator.
+     * Sets this rational number attributes with given integers numerator and denominator.
      * @param numerator Integer numerator.
      * @param denominator Integer denominator diffrent from zero.
      */
@@ -49,6 +49,12 @@ public class Rational {
         this.denominator = denominator;
     }
 
+    /** 
+     * Returns lcm of two given integers a and b.
+     * @param numerator Integer a.
+     * @param denominator Integer b.
+     * @return the lcm of a and b.
+     */
     private int lcm(int n1, int n2) {
         int mcm = n1 > n2 ? n1 : n2;
         while(mcm % n1 != 0 || mcm % n2 != 0)
@@ -56,22 +62,31 @@ public class Rational {
         return mcm;
     }
 
+    /** 
+     * Recursive method to return gcd of two given integers a and b.
+     * @param numerator Integer a.
+     * @param denominator Integer b.
+     * @return the gcd of a and b.
+     */
     private int gcd(int a, int b) {
-        if (a == 0)
-          return b;
-        if (b == 0)
-          return a;
-        if (a == b)
+        if (b == 0 || a == 0)
             return a;
-        return a > b ? gcd(a - b, b) : gcd(a, b - a);
+        return gcd(b, a % b); 
     }
 
+    /** 
+     * Reduces this rational number to the minimum rational number.
+     */
     public void reduce() {
         int gcd = gcd(numerator, denominator);
         numerator /= gcd;
         denominator /= gcd;
     }
 
+    /** 
+     * Reduces this rational number to the minimum rational number.
+     * @return this rational numbber reduced to the minimum rational number.
+     */
     public Rational reduced() {
         reduce();
         return this;

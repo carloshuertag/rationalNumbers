@@ -11,6 +11,7 @@ public class UserRational {
 
     /**
      * Runs an application of Rational class.
+     * Displays a random operation with rational numbers.
      * @param args None
      */
     public static void main(String[] args){
