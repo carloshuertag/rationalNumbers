@@ -79,6 +79,8 @@ public class Rational {
      */
     public void reduce() {
         int gcd = gcd(numerator, denominator);
+        if(gcd < 0)
+            gcd *= -1;
         numerator /= gcd;
         denominator /= gcd;
     }
