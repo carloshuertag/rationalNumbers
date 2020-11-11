@@ -7,7 +7,7 @@ import java.util.Random;
  */
 public class Rational {
 
-    public int numerator, denominator;
+    private int numerator, denominator;
 
     /** 
      * Constructs a new rational number with numerator and denominator 1.
@@ -47,6 +47,10 @@ public class Rational {
         if(denominator == 0)
             denominator = 1;
         this.denominator = denominator;
+    }
+
+    public int getNumerator() {
+        return numerator;
     }
 
     /** 

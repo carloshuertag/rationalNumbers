@@ -35,7 +35,7 @@ public class UserRational {
                     rational1.sub(rational2);
                     break;
                 case 3:
-                    if(rational2.numerator == 0){
+                    if(rational2.getNumerator() == 0){
                         System.out.println("División entre cero no válida");
                         continue;
                     }
